@@ -18,6 +18,7 @@ services:
       - "traefik.http.routers.orbitron.tls=true"
       - "traefik.http.routers.orbitron.tls.certresolver=letsencrypt"
       - "traefik.http.services.orbitron.loadbalancer.server.port=80"
+      - "traefik.http.services.orbitron.loadbalancer.server.healthcheck.url=http://orbitron.pro"
       - "traefik.docker.network=proxy"
     networks:
       - proxy
