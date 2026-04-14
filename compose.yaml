@@ -5,6 +5,12 @@ services:
     volumes:
       - ./dist:/usr/share/nginx/html:ro
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.orbitron.rule=Host(`orbitron.pro`)"
